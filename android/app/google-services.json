@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "85162150697",
+    "project_id": "progetto-finale1",
+    "storage_bucket": "progetto-finale1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85162150697:android:368bd7f670040243040538",
+        "android_client_info": {
+          "package_name": "com.example.sushi_m"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArXsIPy2qxDadlwFrZz5wvrfzA9RNDA-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
