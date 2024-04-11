@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../login/presentation/pages/auth.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -8,12 +10,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Future<void> signOut() async {
+    await Auth().signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('SUSHIMIKU'),
         actions: [
+          IconButton(onPressed: () {signOut();}, icon: Icon(Icons.logout)),
           IconButton(
             onPressed: () {
               // Aggiungi l'azione per navigare alla pagina del profilo
@@ -67,7 +74,6 @@ class _HomeState extends State<Home> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Implementa l'azione per il pulsante del Carrello
-
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(

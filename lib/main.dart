@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:sushi_m/features/login/presentation/pages/auth.dart';
 import 'package:sushi_m/features/login/presentation/pages/login.dart';
 import 'features/home/presentation/pages/home.dart';
 import 'firebase_options.dart';
@@ -29,7 +30,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Login(),
+      //stream builder per vedere se è connesso o meno
+      home: StreamBuilder(
+        stream: Auth().authSateChanges,
+        builder: (context,snapshot){
+          if(snapshot.hasData){
+            return Home();
+          }else{return Login();}
+        }
+
+      ),
     );
   }
 }

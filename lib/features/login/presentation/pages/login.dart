@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sushi_m/features/login/presentation/pages/auth.dart';
 
 import '../../../home/presentation/pages/home.dart'; // Importa GetX
 
@@ -14,23 +16,32 @@ class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool isLogin = true;
 
-  void _login() {
-    if (_formKey.currentState!.validate()) {
-      // Esegui il login...
-      String email = _emailController.text;
-      String password = _passwordController.text;
-
-      // Dopo che il login ha avuto successo, naviga alla pagina Home
-      Get.to(() => Home());
-    }
+//accedi
+  Future<void> signIn() async {
+    try {
+      await Auth().signInWithEmailAndPassword(
+          email: _emailController.text, password: _passwordController.text);
+    } on FirebaseAuthException catch (error) {}
   }
+
+
+  //registrati
+  Future<void> createUser() async {
+    try {
+      await Auth().createUserWithEmailAndPassword(
+          email: _emailController.text, password: _passwordController.text);
+    } on FirebaseAuthException catch (error) {}
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Center(
+            child: Text('Effettua il Login')),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -73,10 +84,18 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: _login,
-                child: Text('Login'),
+                onPressed: () {
+                  isLogin ? signIn(): createUser();
+                },
+                child: Text(isLogin ? 'Accedi' : 'Registrati'),
               ),
-            ],
+
+              TextButton(onPressed: (){
+                setState(() {
+                  isLogin = !isLogin;
+                });
+              }, child: Text(isLogin ? 'non hai un account? registrati': 'hai un account? Accedi')
+              )],
           ),
         ),
       ),
