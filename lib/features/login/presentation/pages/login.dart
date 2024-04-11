@@ -85,7 +85,11 @@ class _LoginState extends State<Login> {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
-                  isLogin ? signIn(): createUser();
+
+                 if( _formKey.currentState!.validate()){
+                   isLogin ? signIn(): createUser();
+                 }
+
                 },
                 child: Text(isLogin ? 'Accedi' : 'Registrati'),
               ),

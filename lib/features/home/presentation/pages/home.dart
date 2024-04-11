@@ -15,6 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  //metodo per il logout
   Future<void> signOut() async {
     await Auth().signOut();
   }
