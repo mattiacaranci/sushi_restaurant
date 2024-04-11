@@ -1,6 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../cart/presentation/pages/cart.dart';
 import '../../../login/presentation/pages/auth.dart';
+import '../../../menu/presentation/pages/menu.dart';
+import '../../../profile/presentation/pages/profile.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -18,12 +23,17 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SUSHIMIKU'),
+        title: Center(child: Text('SUSHIMIKU',style: TextStyle(fontSize: 30.0,color: Colors.red[300]),)),
         actions: [
-          IconButton(onPressed: () {signOut();}, icon: Icon(Icons.logout)),
+          IconButton(
+              onPressed: () {
+                signOut();
+              },
+              icon: Icon(Icons.logout)),
           IconButton(
             onPressed: () {
               // Aggiungi l'azione per navigare alla pagina del profilo
+              Get.to(Profile());
             },
             icon: Icon(Icons.account_circle),
           ),
@@ -34,9 +44,10 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'SUSHIMIKU',
-              style: TextStyle(fontSize: 24.0),
+              'ようこそ',
+              style: TextStyle(fontSize: 40.0),
             ),
+            Image.asset('img/sushi.png',height: 200,),
             SizedBox(height: 20.0), // Spazio tra il titolo e i pulsanti
           ],
         ),
@@ -53,6 +64,7 @@ class _HomeState extends State<Home> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Implementa l'azione per il pulsante del Menu
+                      Get.to(Menu());
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
@@ -61,7 +73,7 @@ class _HomeState extends State<Home> {
                       padding: EdgeInsets.all(16.0), // Padding interno
                     ),
                     child: Text(
-                      'Menu',
+                      'Menù',
                       style: TextStyle(fontSize: 18.0),
                     ),
                   ),
@@ -74,6 +86,7 @@ class _HomeState extends State<Home> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Implementa l'azione per il pulsante del Carrello
+                      Get.to(Cart());
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(

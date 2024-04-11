@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-            child: Text('Effettua il Login')),
+            child: Text('BENVENUTI')),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
